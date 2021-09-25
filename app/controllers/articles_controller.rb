@@ -1,9 +1,15 @@
 class ArticlesController < ApplicationController
-  def index
-    @articles =Article.all
+  def new
+    @article = Article.new
   end
-  
-  def show
-    @article = Article.find(params[:id])
+
+  def create
+    @article = Article.new(title: "...", body: "...")
+
+    if @article.save
+      redirect_to @article
+    else
+      render :new
+    end
   end
 end
